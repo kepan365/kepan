@@ -19,7 +19,7 @@ nonce | string | 随机字符串
 sign | string | 签名
 
  * 签名过程 假设数据如下：
-
+```
 account_id = 123  
 amount = 5.88  
 appid = 888  
@@ -27,18 +27,21 @@ order_no = 1904081028419740
 out_trade_no = 2019040822001498171028043287  
 create_time = 1554722177  
 nonce = V6ySGphc6fYmFzCL
-
+```
  1. 对以上参数进行ksort排序后再组成字符串得到：
+```
 account_id=123&amount=5.88&appid=888&create_time=1554722177&nonce=V6ySGphc6fYmFzCL&order_no=1904081028419740&out_trade_no=2019040822001498171028043287
-
+```
  2. 拼接APPKEY_SERVER(假设为 tDMlAG4gDePQVloFvBp4mYKBSjgp6aOz)得到：
+ ```
 account_id=123&amount=5.88&appid=888&create_time=1554722177&nonce=V6ySGphc6fYmFzCL&order_no=1904081028419740&out_trade_no=2019040822001498171028043287tDMlAG4gDePQVloFvBp4mYKBSjgp6aOz
- 
+ ```
  3. 计算签名 md5后转为大写
+ ```
    strtoupper(md5($str)); = F61CFB54B79AC349D23C11133A203BC5
-   
+ ```
  4. 最终POST数据
- 
+ ```
  account_id = 123  
  amount = 5.88  
  appid = 888  
@@ -47,7 +50,7 @@ account_id=123&amount=5.88&appid=888&create_time=1554722177&nonce=V6ySGphc6fYmFz
  create_time = 1554722177  
  nonce = V6ySGphc6fYmFzCL
  sign = F61CFB54B79AC349D23C11133A203BC5
- 
+ ```
  
  * 游戏方验签过程
  
