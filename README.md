@@ -38,7 +38,7 @@ account_id=123&amount=5.88&appid=888&create_time=1554722177&nonce=V6ySGphc6fYmFz
  ```
  3. 计算签名 md5后转为大写
  ```
-   strtoupper(md5($str)); = F61CFB54B79AC349D23C11133A203BC5
+   strtoupper(md5(str)) = F61CFB54B79AC349D23C11133A203BC5
  ```
  4. 最终POST数据
  ```
@@ -68,6 +68,6 @@ account_id=123&amount=5.88&appid=888&create_time=1554722177&nonce=V6ySGphc6fYmFz
  
  * 特别注意：
  
-    因为同一订单可能会重复发送通知，所以请保证物品只发送一次。如果订单已完成，则直接返回 success
+    $\color{#FF0000}{因为同一订单可能会重复发送通知，所以请保证物品只发送一次。如果订单已完成，则直接返回 success}$
 
 
