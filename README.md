@@ -1,7 +1,7 @@
 ## 参数说明
  - APPID (初始化SDK必要的参数)
  - APPKEY (初始化SDK必要的参数)
- - APPKEY_SERVER (用于服务端回调通讯签名和验签)
+ - APPKEY_SERVER (用于服务端回调通讯验签密钥)
 
 ## 服务端充值回调
 
@@ -68,7 +68,7 @@ account_id=123&amount=5.88&appid=888&create_time=1554722177&nonce=V6ySGphc6fYmFz
  
  * 特别注意：
   ```diff
-  - 因为同一订单可能会重复发送通知，所以请保证物品只发送一次。如果订单已完成，则直接返回 success</span>
+  - 因为同一订单可能会重复发送通知，所以请保证物品只发送一次。如果订单已完成，则直接返回 success
   ````
 
 
