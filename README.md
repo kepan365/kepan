@@ -1,7 +1,7 @@
-## 参数说明
+## 对接参数
  - APPID (初始化SDK必要的参数)
  - APPKEY (初始化SDK必要的参数)
- - APPKEY_SERVER (用于服务端回调通讯验签密钥)
+ - APPKEY_SERVER (用于后台充值回调、登陆验证等)
 
 ## 服务端充值回调
 
@@ -71,4 +71,61 @@ account_id=123&amount=5.88&appid=888&create_time=1554722177&nonce=V6ySGphc6fYmFz
   - 因为同一订单可能会重复发送通知，所以请保证物品只发送一次。如果订单已完成，则直接返回 success
   ````
 
+## SDK登陆验证
 
+ - 登录验证接口地址：https://sdk.kepan365.com/account/verify
+ - 请求方式POST 
+ - Content-Type：application/x-www-form-urlencoded
+
+请求参数：
+参数 | 类型 | 说明
+---|---|---
+appid | int | 对接游戏的APPID参数
+account_id | int | 登录用户ID
+nonce | string | 8位随机字符串
+timestamp | int | 10位unix时间戳
+sign | string | 签名
+
+sign 计算规则，假设数据如下
+
+```
+appid = 10000
+account_id = 123
+nonce = V6ySGphc
+timestamp = 1554722177
+```
+
+ 1. ksort排序后再组成字符串得到：
+```
+account_id=123&appid=10000&nonce=V6ySGphc&timestamp=1554722177
+```
+
+ 2. 在最后拼接APPKEY_SERVER参数(假设为 O5SuutGvaWqRwB9r5F3froQFUJmZsm9E)：
+```
+account_id=123&appid=10000&nonce=V6ySGphc&timestamp=1554722177O5SuutGvaWqRwB9r5F3froQFUJmZsm9E
+```
+
+ 3. 计算签名 md5后转为大写
+ ```
+   sign = strtoupper(md5(str)) = CDEE69AC322CCA5EBA8F4F8E97D3AE5A
+ ```
+
+ 4. 最终POST数据
+ ```
+ appid = 10000
+ account_id = 123
+ nonce = V6ySGphc
+ timestamp = 1554722177
+ sign = CDEE69AC322CCA5EBA8F4F8E97D3AE5A
+ ```
+
+
+ 5. 返回参数(code 200表示成功)：
+```json
+{
+    "code": 200,
+    "msg": "success",
+    "data": []
+}
+
+```
