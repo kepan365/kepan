@@ -120,12 +120,12 @@ account_id=123&appid=10000&nonce=V6ySGphc&timestamp=1554722177O5SuutGvaWqRwB9r5F
  ```
 
 
- 5. 返回参数(code 200表示成功)：
+ 5. 返回参数(code 200表示成功, 新增中宣部实名认证pi返回)：
 ```json
 {
     "code": 200,
     "msg": "success",
-    "data": []
+    "data": {"pi": "1hpfml09b57f3f8185f8cb5094ea3f26278efb"}
 }
 
 ```
