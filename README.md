@@ -60,8 +60,8 @@ account_id=123&amount=5.88&appid=888&create_time=1554722177&nonce=V6ySGphc6fYmFz
  ###### 游戏方验签过程
  
  1. 获取到所有的POST参数
- 2. 取出sign字段、以及上述第5条中不参与签名的额外字段
- 3. 对所有的参数(sign和额外字段除外)按照上述ksort的方式进行计算签名
+ 2. 取出account_id、amount、appid、order_no、out_trade_no、create_time、nonce字段（不含sign及上述第5点中的额外字段）
+ 3. 按照上述第1步到第3步进行排列组装字符串后计算签名
  4. 对比sign
  5. 签名校验通过 进行发货等其他逻辑处理
  
