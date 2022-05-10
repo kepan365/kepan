@@ -51,12 +51,16 @@ account_id=123&amount=5.88&appid=888&create_time=1554722177&nonce=V6ySGphc6fYmFz
  nonce = V6ySGphc6fYmFzCL
  sign = F61CFB54B79AC349D23C11133A203BC5
  ```
+ 5. 额外字段说明
+  ```diff
+  + 由于部分厂商要求增加代金券(coupon)和福利币(coin)金额回传，单位(元)；为了不影响已接入的游戏验签，新增POST的额外字段请不要参与验签
+  ````
  
- * 游戏方验签过程
+ ###### 游戏方验签过程
  
  1. 获取到所有的POST参数
- 2. 取出sign字段
- 3. 对所有的参数(sign除外)按照上述ksort的方式进行计算签名
+ 2. 取出sign字段、以及上述第5条中不参与签名的额外字段
+ 3. 对所有的参数(sign和额外字段除外)按照上述ksort的方式进行计算签名
  4. 对比sign
  5. 签名校验通过 进行发货等其他逻辑处理
  
